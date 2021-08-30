@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\kevin.shaughnessy\\source\\musicApi\\MusicApi\\MusicApi\\MusicApi.csproj": {}
+    "C:\\Users\\kevin.shaughnessy\\source\\MusicApi\\MusicApi\\MusicApi\\MusicApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\kevin.shaughnessy\\source\\musicApi\\MusicApi\\MusicApi\\MusicApi.csproj": {
+    "C:\\Users\\kevin.shaughnessy\\source\\MusicApi\\MusicApi\\MusicApi\\MusicApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kevin.shaughnessy\\source\\musicApi\\MusicApi\\MusicApi\\MusicApi.csproj",
+        "projectUniqueName": "C:\\Users\\kevin.shaughnessy\\source\\MusicApi\\MusicApi\\MusicApi\\MusicApi.csproj",
         "projectName": "MusicApi",
-        "projectPath": "C:\\Users\\kevin.shaughnessy\\source\\musicApi\\MusicApi\\MusicApi\\MusicApi.csproj",
+        "projectPath": "C:\\Users\\kevin.shaughnessy\\source\\MusicApi\\MusicApi\\MusicApi\\MusicApi.csproj",
         "packagesPath": "C:\\Users\\kevin.shaughnessy\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kevin.shaughnessy\\source\\musicApi\\MusicApi\\MusicApi\\obj\\",
+        "outputPath": "C:\\Users\\kevin.shaughnessy\\source\\MusicApi\\MusicApi\\MusicApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\kevin.shaughnessy\\AppData\\Roaming\\NuGet\\NuGet.Config",
