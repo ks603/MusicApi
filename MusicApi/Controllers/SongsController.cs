@@ -28,15 +28,19 @@ namespace MusicApi.Controllers
 
         // GET api/<SongsController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public Song Get(int id)
         {
-            return "value";
+            var song = _dbContext.Songs.Find(id);
+
+            return song;
         }
 
         // POST api/<SongsController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] Song song)
         {
+            _dbContext.Songs.Add(song);
+            _dbContext.SaveChanges();
         }
 
         // PUT api/<SongsController>/5
