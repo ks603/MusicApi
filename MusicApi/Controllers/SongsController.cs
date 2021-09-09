@@ -51,11 +51,19 @@ namespace MusicApi.Controllers
         public IActionResult Put(int id, [FromBody] Song songObj)
         {
            var song = _dbContext.Songs.Find(id);
-            song.Title = songObj.Title;
-            song.Language = songObj.Language;
-            _dbContext.SaveChanges();
+            if (song == null)
+            {
+                return NotFound("No record found against this ID");
+            }
+            else
+            {
+                song.Title = songObj.Title;
+                song.Language = songObj.Language;
+                _dbContext.SaveChanges();
 
-            return Ok("Record updated succefully");
+                return Ok("Record updated succefully");
+            }
+         
         }
 
         // DELETE api/<SongsController>/5
