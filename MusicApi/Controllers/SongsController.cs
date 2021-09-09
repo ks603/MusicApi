@@ -71,10 +71,19 @@ namespace MusicApi.Controllers
         public IActionResult Delete(int id)
         {
             var song = _dbContext.Songs.Find(id);
-            _dbContext.Songs.Remove(song);
-            _dbContext.SaveChanges();
 
-            return Ok("Message Deleted");
+            if (song == null)
+            {
+                return NotFound("No record found");
+            }
+            else
+            {
+                _dbContext.Songs.Remove(song);
+                _dbContext.SaveChanges();
+
+                return Ok("Message Deleted");
+            }
+         
         }
     }
 }
