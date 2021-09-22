@@ -65,6 +65,7 @@ namespace MusicApi.Controllers
             {
                 song.Title = songObj.Title;
                 song.Language = songObj.Language;
+                song.Duration = songObj.Duration;
                 await _dbContext.SaveChangesAsync();
 
                 return Ok("Record updated succefully");
