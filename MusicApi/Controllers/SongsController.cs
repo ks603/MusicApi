@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Azure.Storage.Blobs;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MusicApi.Data;
 using MusicApi.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -42,14 +44,28 @@ namespace MusicApi.Controllers
             return Ok(song);
         }
 
-        // POST api/<SongsController>
-        [HttpPost]
-        public async Task<IActionResult> Post([FromBody] Song song)
-        {
-            await _dbContext.Songs.AddAsync(song);
-            await _dbContext.SaveChangesAsync();
+        //// POST api/<SongsController>
+        //[HttpPost]
+        //public async Task<IActionResult> Post([FromBody] Song song)
+        //{
+        //    await _dbContext.Songs.AddAsync(song);
+        //    await _dbContext.SaveChangesAsync();
 
-            return StatusCode(StatusCodes.Status201Created);
+        //    return StatusCode(StatusCodes.Status201Created);
+        //}
+
+        [HttpPost]
+        public async Task Post([FromForm] Song song)
+        {
+            //string connectionString = connection string
+            //string containerName = "test";
+
+            BlobContainerClient blobContainerClient = new BlobContainerClient(connectionString,containerName);
+            BlobClient blobClient = blobContainerClient.GetBlobClient(song.Image.FileName);
+            var memoryStream = new MemoryStream();
+            await song.Image.CopyToAsync(memoryStream);
+            memoryStream.Position = 0;
+            await blobClient.UploadAsync(memoryStream);
         }
 
         // PUT api/<SongsController>/5
