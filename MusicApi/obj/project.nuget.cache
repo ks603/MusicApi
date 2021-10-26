@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "kYeOkhgTmIhrwgUbNH9Z1/MMHCfmeaOufS7EXJl5+T7EkZze1WbSXXMXjKn3GQkFe3KiVEzRcuDkI0bhQi4HWQ==",
+  "dgSpecHash": "lEhvpTc+dcDwmtuw2sbDQ/v0xgq+f12m0CR0LNOnCc8d5YP5dkU8y0mGojoGi2ffrfP4ozVZzqzO/5rC+mpejg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\kevin.shaughnessy\\source\\MusicApi\\MusicApi\\MusicApi\\MusicApi.csproj",
+  "projectFilePath": "C:\\Users\\kevin.shaughnessy\\source\\musicApi\\MusicApi\\MusicApi\\MusicApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\kevin.shaughnessy\\.nuget\\packages\\azure.core\\1.19.0\\azure.core.1.19.0.nupkg.sha512",
     "C:\\Users\\kevin.shaughnessy\\.nuget\\packages\\azure.storage.blobs\\12.10.0\\azure.storage.blobs.12.10.0.nupkg.sha512",

@@ -55,10 +55,10 @@ namespace MusicApi.Controllers
         //}
 
         [HttpPost]
-        public async Task Post([FromForm] Song song)
+        public async Task<IActionResult> Post([FromForm] Song song)
         {
-            //string connectionString = connection string
-            //string containerName = "test";
+            string connectionString = @"DefaultEndpointsProtocol=https;AccountName=musicstorageacc1;AccountKey=Umgr0I1Yfs97E+PA5SkYA15DjAHQUZJuVnr/L97k16wFUoV3EkzxayiWsPDJ6aKCH7tkVt1kc7s2/IZFWklbuA==;EndpointSuffix=core.windows.net";
+            string containerName = "test";
 
             BlobContainerClient blobContainerClient = new BlobContainerClient(connectionString,containerName);
             BlobClient blobClient = blobContainerClient.GetBlobClient(song.Image.FileName);
@@ -66,6 +66,9 @@ namespace MusicApi.Controllers
             await song.Image.CopyToAsync(memoryStream);
             memoryStream.Position = 0;
             await blobClient.UploadAsync(memoryStream);
+            await _dbContext.Songs.AddAsync(song);
+            await _dbContext.SaveChangesAsync();
+            return StatusCode(StatusCodes.Status201Created);
         }
 
         // PUT api/<SongsController>/5
