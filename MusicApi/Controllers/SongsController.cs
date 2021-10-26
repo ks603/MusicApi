@@ -66,6 +66,7 @@ namespace MusicApi.Controllers
             await song.Image.CopyToAsync(memoryStream);
             memoryStream.Position = 0;
             await blobClient.UploadAsync(memoryStream);
+            song.ImageUrl = blobClient.Uri.AbsoluteUri;
             await _dbContext.Songs.AddAsync(song);
             await _dbContext.SaveChangesAsync();
             return StatusCode(StatusCodes.Status201Created);
