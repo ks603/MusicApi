@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MusicApi.Data;
+using MusicApi.Helper;
 using MusicApi.Models;
 using System;
 using System.Collections.Generic;
@@ -57,16 +58,8 @@ namespace MusicApi.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromForm] Song song)
         {
-            string connectionString = @"DefaultEndpointsProtocol=https;AccountName=musicstorageacc1;AccountKey=Umgr0I1Yfs97E+PA5SkYA15DjAHQUZJuVnr/L97k16wFUoV3EkzxayiWsPDJ6aKCH7tkVt1kc7s2/IZFWklbuA==;EndpointSuffix=core.windows.net";
-            string containerName = "test";
-
-            BlobContainerClient blobContainerClient = new BlobContainerClient(connectionString,containerName);
-            BlobClient blobClient = blobContainerClient.GetBlobClient(song.Image.FileName);
-            var memoryStream = new MemoryStream();
-            await song.Image.CopyToAsync(memoryStream);
-            memoryStream.Position = 0;
-            await blobClient.UploadAsync(memoryStream);
-            song.ImageUrl = blobClient.Uri.AbsoluteUri;
+            var imageUrl = await FileHelper.UploadImage(song.Image);
+            song.ImageUrl = imageUrl;
             await _dbContext.Songs.AddAsync(song);
             await _dbContext.SaveChangesAsync();
             return StatusCode(StatusCodes.Status201Created);
