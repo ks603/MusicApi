@@ -12,7 +12,7 @@ namespace MusicApi.Helper
     {
         public static async Task<string> UploadImage(IFormFile file)
         {
-            string connectionString = ;
+            string connectionString = @"DefaultEndpointsProtocol=https;AccountName=musicstorageaccount2;AccountKey=swubvl9SvRqER0bctr8a5uXZecbiCgaJ4EFrIrO1QbtJcbCLomHfS3XkzwnZfsV9EonfmudrfJl0T4DVNCFqaw==;EndpointSuffix=core.windows.net";
             string containerName = "songscover";
 
             BlobContainerClient blobContainerClient = new BlobContainerClient(connectionString, containerName);
