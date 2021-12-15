@@ -24,7 +24,7 @@ namespace MusicApi.Models
         public IFormFile AudioFile { get; set; }
         public string AudioUrl { get; set; }
         public int ArtistId { get; set; }
-        public int AlbumId { get; set; }
+        public int? AlbumId { get; set; }
 
     }
 }

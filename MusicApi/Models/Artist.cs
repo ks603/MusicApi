@@ -16,5 +16,8 @@ namespace MusicApi.Models
         [NotMapped]
         public IFormFile Image { get; set; }
 
+        public ICollection<Album> Albums { get; set; }
+        public ICollection<Song> Songs { get; set; }
+
     }
 }
