@@ -10,7 +10,7 @@ using MusicApi.Data;
 namespace MusicApi.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    [Migration("20211216040606_InitialCreate")]
+    [Migration("20211218035755_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -57,7 +57,7 @@ namespace MusicApi.Migrations
                     b.Property<string>("ImageUrl")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("MyProperty")
+                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
