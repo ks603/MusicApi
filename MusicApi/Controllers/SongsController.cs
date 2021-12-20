@@ -26,6 +26,9 @@ namespace MusicApi.Controllers
         {
             var imageUrl = await FileHelper.UploadImage(song.Image);
             song.ImageUrl = imageUrl;
+            var audioUrl = await FileHelper.UploadFile(song.AudioFile);
+            song.AudioUrl = audioUrl;
+            song.UploadedDate = DateTime.Now;
             await _dbContext.Songs.AddAsync(song);
             await _dbContext.SaveChangesAsync();
             return StatusCode(StatusCodes.Status201Created);

@@ -23,5 +23,19 @@ namespace MusicApi.Helper
             await blobClient.UploadAsync(memoryStream);
             return blobClient.Uri.AbsoluteUri;
         }
+
+        public static async Task<string> UploadFile(IFormFile file)
+        {
+            string connectionString = @"DefaultEndpointsProtocol=https;AccountName=musicstorageaccount2;AccountKey=Bxpok5jQiVzH+nYLGCELkwjSadXcDMYvWXgAdB822oQ/j9cHWrCa6u27ZT7r21sv6CNUIwTGFHcberyNHiVETA==;EndpointSuffix=core.windows.net";
+            string containerName = "audiofiles";
+
+            BlobContainerClient blobContainerClient = new BlobContainerClient(connectionString, containerName);
+            BlobClient blobClient = blobContainerClient.GetBlobClient(file.FileName);
+            var memoryStream = new MemoryStream();
+            await file.CopyToAsync(memoryStream);
+            memoryStream.Position = 0;
+            await blobClient.UploadAsync(memoryStream);
+            return blobClient.Uri.AbsoluteUri;
+        }
     }
 }
