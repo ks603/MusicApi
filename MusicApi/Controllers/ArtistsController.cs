@@ -46,9 +46,9 @@ namespace MusicApi.Controllers
         }
 
         [HttpGet("[action]")]
-        public IActionResult ArtistDetails()
+        public async Task<IActionResult> ArtistDetails(int artistId)
         {
-           var artistDetails = _dbContext.Artists.Include(a => a.Songs);
+           var artistDetails = await _dbContext.Artists.Where(a=>a.Id == artistId).Include(a => a.Songs).ToListAsync();
             return Ok(artistDetails);
         }
     }
