@@ -44,5 +44,12 @@ namespace MusicApi.Controllers
                           }).ToListAsync();
             return Ok(artists);
         }
+
+        [HttpGet("[action]")]
+        public IActionResult ArtistDetails()
+        {
+           var artistDetails = _dbContext.Artists.Include(a => a.Songs);
+            return Ok(artistDetails);
+        }
     }
 }
