@@ -33,5 +33,11 @@ namespace MusicApi.Controllers
             await _dbContext.SaveChangesAsync();
             return StatusCode(StatusCodes.Status201Created);
         }
+        [HttpGet]
+        public IActionResult GetAllSongs()
+        {
+            var songs =_dbContext.Songs;
+            return Ok(songs);
+        }
     }
 }
