@@ -49,5 +49,22 @@ namespace MusicApi.Controllers
 
             return Ok(songs);
         }
+
+        [HttpGet("[action]")]
+        public async Task<IActionResult> FeaturedSongs()
+        {
+            var songs = await (from song in _dbContext.Songs
+                               where song.IsFeatured == true
+                               select new
+                               {
+                                   Id = song.Id,
+                                   Title = song.Title,
+                                   Duration = song.Duration,
+                                   ImageUrl = song.ImageUrl,
+                                   AudioUrl = song.AudioUrl
+                               }).ToListAsync();
+
+            return Ok(songs);
+        }
     }
 }
