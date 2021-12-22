@@ -35,8 +35,10 @@ namespace MusicApi.Controllers
             return StatusCode(StatusCodes.Status201Created);
         }
         [HttpGet]
-        public async Task<IActionResult> GetAllSongs()
+        public async Task<IActionResult> GetAllSongs(int? pageNumber, int? pageSize)
         {
+            int currentPageNumber = pageNumber ?? 1;
+            int currentPageSize = pageSize ?? 5;
             var songs = await (from song in _dbContext.Songs
                                select new
                                {
@@ -47,7 +49,7 @@ namespace MusicApi.Controllers
                                    AudioUrl = song.AudioUrl
                                }).ToListAsync();
 
-            return Ok(songs);
+            return Ok(songs.Skip((currentPageNumber - 1) * currentPageSize).Take(currentPageSize));
         }
 
         [HttpGet("[action]")]
