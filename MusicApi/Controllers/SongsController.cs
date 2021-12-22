@@ -66,5 +66,22 @@ namespace MusicApi.Controllers
 
             return Ok(songs);
         }
+
+        [HttpGet("[action]")]
+        public async Task<IActionResult> NewSongs()
+        {
+            var songs = await (from song in _dbContext.Songs
+                               orderby song.UploadedDate descending
+                               select new
+                               {
+                                   Id = song.Id,
+                                   Title = song.Title,
+                                   Duration = song.Duration,
+                                   ImageUrl = song.ImageUrl,
+                                   AudioUrl = song.AudioUrl
+                               }).Take(15).ToListAsync();
+
+            return Ok(songs);
+        }
     }
 }
