@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using MusicApi.Data;
 using MusicApi.Helper;
 using MusicApi.Models;
@@ -34,9 +35,18 @@ namespace MusicApi.Controllers
             return StatusCode(StatusCodes.Status201Created);
         }
         [HttpGet]
-        public IActionResult GetAllSongs()
+        public async Task<IActionResult> GetAllSongs()
         {
-            var songs =_dbContext.Songs;
+            var songs = await (from song in _dbContext.Songs
+                               select new
+                               {
+                                   Id = song.Id,
+                                   Title = song.Title,
+                                   Duration = song.Duration,
+                                   ImageUrl = song.ImageUrl,
+                                   AudioUrl = song.AudioUrl
+                               }).ToListAsync();
+
             return Ok(songs);
         }
     }
